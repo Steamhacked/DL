@@ -1,0 +1,46 @@
+AI v. ML v. NN v. DL
+
+  AI - Artificial Intelligence - a field of study aiming to develop computing systems replicating/emulating human brain performing cognitive tasks; e.g.: image recognition, language translation, etc.
+  
+  ML - Machine Learning - field of study concerned with techniques and algorithms implemented to give computers an ability to learn without being progreammed explicitly 
+  
+  NN - Neural Networks - computing systems inspired by neural networks constituting brains, based on collection of nodes (artificial neurons) which is a loose model of biological neurons
+  
+  DL - Deep Learning - subfield of machine learning & deep learning, depth (number of node layers > 3) is what distinguishes deep learning from shallow learning 
+
+Supervised vs Unsupervised
+
+  Supervised Machine Learning - requires labeled output/input data for learning and prediction (vast majority of DL/NN)
+    e.g. (problems): stock market prediction, spam detection etc.
+
+  Unsupervised Machine Learning - does not require labled data
+    e.g. (problems): 
+
+Regression vs Classification
+
+  Regression Models - are used to identify relationship between input and ouput variables, used to predict continuous value, outputs continuous numeral
+
+  Classification Models - are used to categorize data provided into different classes, used to predict discrete/finite numeral value, outputs discrete/categorical value
+
+Elements of ML problems
+
+  Task, Inputs, Outputs, Model & its Parameters, Loss Function - should all be clearly defined when approaching a ML problem
+
+Training a Model
+
+  Consists of finding best values for the trainable parameters of the chosen model, for the given task and dataset
+  Found by minimizing loss function output
+  It is therefore an optimization problem
+
+  Linear Regressions can be optimized by solving equation:
+    W* = (X^T*X)^-1 * X^T*Y (normal equation)
+    W* - optimal parameters
+    Problems: sophisticated ML problems are likely to not have normal equation, X^T*X might not be invertible
+
+  Gradient Descent - iterative algorithm solving optimization problems
+    Initiated at selected non-optimal parameters
+    Iteratively updates parameters in a direction of negative gradient (defined by update rule set) until converge at a local minimum (stopped when change in parameters is lower than a selected threshold)
+    Can be used in non-linear models, handles large datasets (although sub-optimal)
+
+
+  
