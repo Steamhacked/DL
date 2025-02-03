@@ -1,0 +1,35 @@
+Symmetry - tendency of all neurons to have the same weights and processes
+  Symmetrical Neural Networks - lack diversity & generalization, therefore, incapable of learning complex patterns, more vulnerable to adversarial attacks
+
+Random Normal Initialization - initializes parameters randomly from a standard normal distribution (mean = 0, SD = 1). May lead to slow convergence / divergence, as the network gets deeper
+
+Xavier initialization - based on Gaussian distribution
+
+**There is no the best initializing algorithm, different algorithms will suit different taks**
+
+Exploding Gradient - happens when gradient descent rule changes are far greater than current values in the matrix. Usually because of: unlucky initialization, learning rate alpha is too large for given parameters,
+  sometimes when gradients are approximated with "buggish" formulas.
+
+Learning Rate - hyperparameter that controls step size of the algorithm minimizing loss function. Too small -> takes longer to converge, possibly prevents overshooting global minimum, may lead to 
+  the algorithm being stuck in a suboptimal local minimum. Too large -> may converge fasster, at a risk of exploding gradient
+
+**Optimal learning rate should be found case-by-case**
+
+Hyperparameter Tuning - finding optimal hyperparameter that result into quick and reliable learning
+
+Gradient Explosion can be controlled manually. There are some other options: Downscaling initial parameters values -> divide initial values by some factor to prevent large initial values.
+  Gradient clipping -> set maximum change for iteration and truncate any change that goes above. Time evolution -> start with large learning rate and progressively reduce it.
+
+Vanishing Gradient - results from: too small learning rate / parameters
+
+Activation Function - introduces non-linearity to the neural network
+
+Activation Functions: 
+  Sigmoid: S(X) = 1/(1+exp(-x)) S(x) -> [0;1]
+  Hyperbolic Tangent: tanh(x) -> [-1;1]
+  Rectified Linear Unit (ReLU): ReLU(x) = x if x>=0, = 0 if x<0
+  Leaky ReLU: Allows for small slope for negative values
+
+Universal Approximation Theorem - for each f(x) there exists a neural network that can approach it with given precision.
+  N.B.1: The said neural network might be arbitrarily large
+  N.B.2: The said neural network might not be able to generalize
