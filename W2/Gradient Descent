@@ -1,1 +1,23 @@
+Problem: if non-global local minimum exists, the algorithm might get trapped at that point -> suboptimal parameters -> suboptimally trained neural network
+
+When function is non-convex, initial point affects endpoint
+
+Momentum -> if the direction of parameters space consistently leads to optimal point (good reduction in loss function) the movement in that direction is reinforced
+
+x <- x - af'(x) + mu*g(f'prev)
+a - hyperparameter controlling step size
+mu - coefficient controlling influence of momentum
+(Nesterov Momentum - another possible implementation)
+
+Learning Rate Decay -> gradually reduce learning rate of gradient descent over iterations, helps to converge quicker in early stages, helps preventing overfitting
+
+a <- Ka
+
+Gradient-Based Learning Rate COntrol - use of gradient's value to adjust learning rate
+
+AdaGrad -> adapts learning rate for each parameter separately, scales down updating of parameters that already received large updates
+
+RMSProp -> Refined AdaGrad using running average to prevent G_w2 from infinitely growing
+
+Adam -> Combination of RMSProp and momentum, combination of exponentially decaying averages of the past gradients & average of the past squared gradients
 
