@@ -1,0 +1,34 @@
+Additional Metrics:
+
+  MSE - is not easily interpretable 
+  
+  Add Accuracy Function
+  
+  Store both Accuracies and Losses, to display later on
+  
+  Demonstrate Evolution of Accuracies 
+
+Train-Test Valid Split:
+
+  Split Data into 3 sets for Training, Testing and Validating
+
+  Validation set used after each iteration to estimate model's performance with unseen samples and generalization, spots over/under-fitting, helps choosing optimal hyperparameters
+
+  Typical Split: 0.8-0.1-0.1 (NFL)
+
+  Poor values for both training and validation -> Underfitting
+  Good values for training, but bad for validation -> Overfitting
+  Good values for both training and validation -> Good Model
+
+Early Stop:
+
+  Stop the model training - before it starts losing generalization and becomes overfitting (when validation metrics are the best)
+
+  General practice: stop at high accuracy (e.g.:0.98) and when change in accuracy becomes marginal
+
+  Main problem: early stop is usually too late anyway, since it happens when function already starts losing accuracy
+
+Saver & Loader:
+
+  Save data every k'th(manually decided) iteration 
+  Implement loader function to reproduce parameters
