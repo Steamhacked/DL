@@ -1,0 +1,24 @@
+Tensor - basic torch object, equivalent of numpy array (with extra features)
+  Initialization:
+  zeros_tensor = tensor.zeros(size = (3, )) //.ones() as well
+  numpy_tensor = torch.from_numpy(numpy_arr) // get from numpy array
+  list_tensor = torch.tensor(list)
+
+  Datatypes - pytoch tensor has a dtype attribute, that tracks datatype of values stored. (Operations will require similar or identical datatypes)
+    tensor_1 = torch.tensor(list, dtype = torch.int32) // setting datatype
+    tensor_2 = tensor_1.type(torch.float64) // changing datatype
+
+  Basic Operations:
+    Traversing using for
+    Slicing
+    Accessing elements using []
+    Update elements
+
+  Broadcastable tensors: 
+    Each tensor has at least 1 dimension;
+    When iterating over dimension sizes, starting at the trailing dimension, dimension sizes must either be equal or one of them is 1 or does not exist
+
+
+
+
+  
