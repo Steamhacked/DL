@@ -1,0 +1,6 @@
+Separate modes for different behaviors: train() & eval()
+
+Some layers change behavior, therefore separating training and evaluating is a good practice
+
+Build NN in blocks, to introduce modularity & reusability
+
