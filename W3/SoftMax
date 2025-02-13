@@ -1,0 +1,5 @@
+SoftMax function - assists in transfering binary classification to multi-class classification:
+  Transforms vector of values, into vector of values (0;1) that add up to 1
+
+PyTorch applies softmax during CE loss function, therefore softmax should not be used in forward method
+
