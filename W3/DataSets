@@ -1,0 +1,12 @@
+In order to create Custom dataset, create a class that is a sub-class of torch.utils.data.Dataset
+
+  class customDataSet(torch.utils.data.Dataset){}
+
+  Inside the class rewrite __init__, __getitem__, __len__
+
+Dataloader for the given custom dataset:
+
+  custom_dataloader = torch.utils.data.Dataloader(customDataSet, batch_size = 32, shuffle = True){}
+
+Normalization is important in optimizing learning, include normalization in dataset/dataloader
+
