@@ -11,3 +11,15 @@ K  is often square matrix with odd dimensions
 Dimensions of new image are reduced
 
 Y_i,j = (1/k^2)* sum(m=1,k)sum(n=1,k) <X_i+m-1,j+n-1 * K_m,n>
+
+Padding - to address downsizing, (usually just adds black pixels around image)
+  h' = h+2p-k+1; w' = w+2p-k+1; p - padding; k - kernel dimension, w/h - original dimensions;
+  p = (k-1)/2 -> value of p such that dimensions of Y = dimensions of X
+
+Stride - affects step size of convolution, greater stride -> smaller final image (default s = 1)
+    h' = ((h+2p-k)/s)+1;
+
+Dilation(not as utilizable) - determines spacing between pixels, before convolution is applied (default d = 1)
+  h' = ((h+2p-d(k-1)-1)/s)+1;
+
+In PyTorch: Conv2d
