@@ -1,0 +1,13 @@
+Monochrome/RGB Images can be represented as matrices/tensors
+  E.G.: 1024x768 resolution RGB image -> tensor(3, 1024, 768); Batch of 50 such images -> tensor(50, 3, 1024, 768)
+
+Spatial Dependence: a pixel on its own cannot describe a complete image
+
+Homophily: pixels of an image tend to be near pixels of similar properties
+
+Convolution -> Y = f(X,K); X - image, K - convolution kernel (filter); Y - new image
+
+K  is often square matrix with odd dimensions
+Dimensions of new image are reduced
+
+Y_i,j = (1/k^2)* sum(m=1,k)sum(n=1,k) <X_i+m-1,j+n-1 * K_m,n>
