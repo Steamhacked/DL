@@ -1,0 +1,18 @@
+Time Series Dataset - a sequence of points that are collected over time, typically at regular intervals
+
+Decomposition - separates time series into trend, seasonal and residual subsets
+
+Recurrent Neural Network - NN that operates on series and will:
+  Receive an input: observaation at time, memory vectore, computed as one of the NN outputs at time t-1
+  Com[ute prediction for observation at time+1, keeping memory of previous operations
+
+Good Memory length:
+  Depends on time scale
+  Requires optimal complexity (too large memory ->over/underfitting)
+
+
+RNN - prone to vanishing gradient
+
+History loses potentially useful older information over time
+
+Backpropagation Through Time -> 
