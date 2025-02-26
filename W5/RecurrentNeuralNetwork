@@ -1,0 +1,21 @@
+Recurrent Neural Network - operates on series:
+  Receives obervation at a time t and memory vector that is one of the outputs at t-1
+  Computes prediction that should match observation at time t+1 and update memory vector
+
+Backpropagation through time - update memory every N samples -> Vanishing Gradient Descent 
+
+Solutions?
+
+LSTM -> Long Short-Term Memory, RNN that introduces selective retaining/discarding of information, mimics remembering/forgetting (brain)
+  Receives observation at t, 2 memory vectors for short and long term memories at t-1
+  Produces preditionc at t+1, updates memory vectors (updated differently)
+
+Gates:
+  Forget Gate: decide if information should be discarded:
+    f_t = sigma(W_f*x_t + U_f*h_t-1 + b_f)
+  Input Gate: decide if information should be retained:
+    i_t = sigma(W_i*x_t + U_i*h_t-1 + b_i)
+  Having Sigmoid activation makes sense, but NFL
+
+New Cell State:
+  c_t = f_t*c_t-1 + i_t * tanh(W_c*x_t + U_c*h_t-1 + b_c)
