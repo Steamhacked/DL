@@ -1,0 +1,18 @@
+1-to-1 -> single input, optional memory vector, single output
+Many-to-1 -> many inputs (sequence or not), optional memory vector, single output 
+1-to-Many -> single input, optional memory vector, many outputs (specific, usually greater dimentionality of inputs than outputs is preferred [NFL])
+Many-to-Many -> many inputs, optional memory vector, many outputs
+
+Seq2Seq -> Many-to-Many model that separates input analysis and output production using encoders & decoders
+
+Encoder -> analyses input sequence to produce final memory vector after analysing all inputs, can be done with RNN with final memory state being "encoding vector"
+
+Decoder -> analyses encoding vector to produce output sequence, can be done with RNN with first memory state being encoding vector
+
+Encoder -> many-to-one; Decoder -> (somewhat opposite of encoder) one-to-many
+
+
+AutoRegressive RNN -> Reuses predictions made from the previous state as inputs (popular for NLP) 
+
+When to use Autoregressive? Sequential Dependency, High Accuracy Required, Flexibility in Output Length Required
+
