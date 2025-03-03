@@ -1,0 +1,10 @@
+Adversarial sample - given to a trained model to make it malfunction (on purpose); E.G.: Adversarial Patches
+
+Epsilon Noising Method -> adding random noise to each pixel of an image, with aplitude [-epsilon; epsilon]
+
+Good Adversarial Sample:
+  1) Results into model malfunctioning 
+  2) Sample still appears plausible to a human person 
+
+Plausibility -> measured by distance betweend original input & adversarial sample (distance constraint - chosen arbitrarily)
+
