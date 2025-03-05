@@ -8,3 +8,15 @@ Good Adversarial Sample:
 
 Plausibility -> measured by distance betweend original input & adversarial sample (distance constraint - chosen arbitrarily)
 
+Targeted vs Untargeted:
+  Untargeted attacks will result into any misclassification
+  Targeted attacks will result into misclassification as a specific class
+
+Black-Box vs White-Box:
+  Black-Box attack does not exploit properties of the model
+  White-Box attack attempts to exploit properties of the model
+
+One-Shot vs Iterated:
+  One-Shot attack - single attack per sample
+  Iterated attack - produce attack sample, adjusts until model malfunctions or iteration limit reached
+
