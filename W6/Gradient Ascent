@@ -1,0 +1,12 @@
+Gradient Ascent:
+  Untrain
+  Increase Loss
+  Modify Inputs
+
+Fast Gradient Sign Method (FGSM):
+  Replace Gradient with just its sign
+  x_~ = x +epsilon sign(gradient(L(x,theta,c)))
+
+Targeted FGSM:
+  x_n+1 = x_n -epsilon sign(gradient(L(x_n,theta,c_~)))
+  c_~ -> target class
