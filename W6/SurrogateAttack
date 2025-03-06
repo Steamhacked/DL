@@ -1,0 +1,5 @@
+Recreate target blackboxed model to use parameters of the copy to attack the target model
+
+  Instead of using ground truth, use predictions of target model
+  When trained enough to match target -> use copy's parameters to create an attack
+
