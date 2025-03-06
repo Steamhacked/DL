@@ -1,1 +1,16 @@
 Rather than utilizing gradients, utilizes logits, bypasses distillation & arms race defense. Uses model's properties to create adversarial dataset
+
+
+Objective Function? 
+
+x^~ = min_u(f(u))
+
+Unconstrained Multi-Objective Optimization:
+
+min_u ( ||u-x||_2 + alpha * max(d(u), 0)) -> penalizes images u far from og image (plausibility)
+
+with d(u) = max_t!=c^~ (f_t(u)-f_c^~(u)) -> non-zero if image does not have target label (efficacy)
+
+to find most plausible & efficient adversarial sample
+
+Variations Exist
