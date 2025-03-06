@@ -1,0 +1,1 @@
+Rather than utilizing gradients, utilizes logits, bypasses distillation & arms race defense. Uses model's properties to create adversarial dataset
