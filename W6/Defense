@@ -23,4 +23,7 @@ Defensive Distillation -> Scorched Earth Your own Land -> Destroying your own gr
   Train first with low temperature, set temperature higher after training 
 
   FGSM still manages to get through it (though not as easily?)
+  Carlini-Wagner attack bypasses Defensive Distillation
+
+
 
