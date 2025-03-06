@@ -7,3 +7,20 @@ Advanced Attacks:
   Carlini-Wagner -> targeted, iterated, whitebox
   Surrogate -> any combination
   Boundary -> targeted, iterated, blackbox
+
+Arms Race -> most basoc strategy, assumes anticipation of future attacks; Similar to a data augmentation, retrains & makes model more robust;
+  Model is trained to recognized attacks
+  Assumes proper assumption, trained against specific attack, (might be not robust enough, attackers get creative)
+
+Defensive Distillation -> Scorched Earth Your own Land -> Destroying your own gradients enough to prevent usage of said gradients to attack, comes with a risk
+  Utilizes SoftMax with Temperature: y_i = exp(x_i/T)/Sigma(exp(x_j/T))
+  When T->0, largest x_i becomes y_i = 1; everything else tends to 0
+  SoftMax -> Retains Order of Magnitude
+
+  When T->inf, y_i->1/N, gradients will vanish
+  Vanishing your own gradients will prevent attackers from using them, however training might get more complicated
+
+  Train first with low temperature, set temperature higher after training 
+
+  FGSM still manages to get through it (though not as easily?)
+
