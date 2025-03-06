@@ -27,3 +27,10 @@ Defensive Distillation -> Scorched Earth Your own Land -> Destroying your own gr
 
 
 
+BlackBoxing -> hide model parameters, to prevent attackers from access and use of those parameters (Last Resort, as of now)
+  Surrogate Attack -> recreates a copy of a target model & utilizes parameters of the copy, bypasses blackboxing if copy is recreated correctly
+
+
+
+
+
