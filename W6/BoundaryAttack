@@ -1,0 +1,11 @@
+BlackBox type of attack,
+
+  Iteratively noise x_i, until ||x^~-x|| -> minimized (maximized plausibility) (Walk along the boundary):
+    x_0 noised -> misclassified
+    noise x_0 & check if ||x_1-x|| < ||x_n-x|| keep x_1, otherwise x_1=x_0
+    
+
+  Takes a lot of iterations, computationally intensive & slow
+
+More sophisticated: attempt to visualize/predict shape of a boundary
+
