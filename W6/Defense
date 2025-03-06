@@ -1,0 +1,9 @@
+Mechanisms of Defends: 
+  Arms Race
+  Defensive Distillation
+  Black-Boxing
+
+Advanced Attacks:
+  Carlini-Wagner -> targeted, iterated, whitebox
+  Surrogate -> any combination
+  Boundary -> targeted, iterated, blackbox
