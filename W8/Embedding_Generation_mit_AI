@@ -1,0 +1,23 @@
+Train NN with dataset of words & sentences
+Have one of the hidden layers represent features
+
+Continuous Bag of Words -> predicts middle word at index k, of sentence of 2k+1 words
+
+Use sliding window with k = const., to generate pairs of x_i, y_i; x_1 -> sentence witout middle word, y_i -> middle word
+
+Build simple NN that take 2k non-middle words as one-hot embeddings e_i
+
+Add one embedding layer with matrix W -> R^Dx|V|, D -> size of the new embedding, often D<<|V|
+
+First Layer -> Embedding Layer, not Linear, each one-hot vector is multiplied by embedding matrix, to produce embedding of size D, v_k = W*e_k
+
+2nd to Last Layer -> Aggregation, sum all v_k non-middle word representations, resulting into -> u vector, describing context (average context, non-trainable)
+
+Last Layer -> Trainable, output = softmax(Ru), with R -> R^|V|xD such that o-> R^|V|
+
+Loss Function: Advisable -> Negative Logarithm; L = -log(o_t = e_t|e_-t)
+
+We may remove non-meaningful words at the beginning (e.g.: 'a', 'the', 'le', etc.)
+
+Why it works? -> Distributional Hypothesis of Linguistics -> words appearing in similar contexts/sentences tend to be related to each other
+
