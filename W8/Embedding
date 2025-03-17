@@ -1,0 +1,43 @@
+The Problem: NNs are Trained with NUMERICAL data, but what if we want to process string values?
+
+Embedding -> Numerical Representation of Non-Numerical Data
+
+Mathematically: Embedding -> a function that transforms object x into another object x', x' is supposed to be mathematically more tractable and useful than x
+
+x = "ПОШЛА ТЫ НАХУЙ ДУРА ЕБАНАЯ" -> x' = tensor 
+
+Injective -> maps distinct elements of X to distinct elemets of X': for any x_1, x_2 in X
+  x_1 != x_2 => f(x_1) != f(x_2) OR
+  f(x_1) = f(x_2) => x_1 = x_2
+
+Surjective -> maps all elements of X' to at least one value of domain X:
+  For any x' in X', there exists at least one x in X, such that f(x) = x'
+
+Bijective -> Injective and Surjective combined, one-to-one mapping between all the elements in both domain X and codomain X'
+
+Theorem #1:
+Function f: X->X', admits inverse function f^{-1}: X'->X, iff f is bijectiev
+
+Embedding is ideally bijective; If non-surjective -> there is an element in X' that cannot be mapped to X and vice-versa;
+If non-injective -> there is an element in X' that could be mapped to multiple values in X
+
+Theorem #2:
+Given two countable sets X & X', if there exists a bijective function f: X->X', then X & X' have the same cardinality (same number of elements)
+
+Manual Embedding: Manually extracting useful data from from object that cannot be fed to NN, we can then label each element and feed to NN to train
+
+One-Hot-Word Embedding: Assing one-hot Vector to each element, function f: X -> OH_R5 -> set of all possible One-Hot vectors for Dimension 5
+  f is bijective
+  Embeddings are orthogonal in the inner product space, meaning -> each embedding vector is as far as possible from the rest of the embedding vectors in terms of vectors distance
+  Does not work well with language, why?
+
+Languare Features:
+  1) Homonyms -> same words may have different meanings (means embeddings cannot be injective)
+  Syntactical Meaning may also be different
+    Both depends on context (words surrounding), therefore we cannot analyze a word on its own
+  2) Synonyms -> different words may have similar/same meanings
+    E.G.: With One-Hot Embedding: (e_kitten, e_kitty) = 0; In practice we prefer (e_kitten, e_kitty) ~= 1
+  3) Words may be deemed synonymous or not depending on task;
+    E.G.: (e_cold, e_fever) ~= 1 for casual dialogue, (e_cold, e_fever) -> [0.5;0.8]
+  4) There are perhaps billions (trillions if we include acronyms, typos, conjugations, etc.) of words, the size is too big
+    
