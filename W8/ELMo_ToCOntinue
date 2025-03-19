@@ -1,0 +1,5 @@
+Embeddings still do not use contextual information, therefore homonyms will have the same embedding despite having different meaning
+
+ELMo addressses that, instead of one-hot encoding words it decomposes them and one-hot encodes characters.
+
+
