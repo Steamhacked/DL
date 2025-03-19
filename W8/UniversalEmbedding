@@ -1,0 +1,12 @@
+Universal Embeddings -> pre-trained on huge dataset, can be tuned to a variety of downstream tasks. Transfer Learning form
+
+FastText -> Includes "n-grams" which allow training for words absent from initial pretraining dataset
+
+Input: Concatenation of the word and its n-grams; Architecture -> SkipGram, but with n-grams
+
+Out-Of-Vocabulary problem -> what embedding should do when a word presented is not in original vocabulary
+
+Word2Vec -> won't work, we cannot one-hot encode non-existing word
+
+FastText addresses that by utilizing character-level information through n-grams & allows to identify etymology in words
+
