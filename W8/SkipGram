@@ -1,0 +1,23 @@
+SkipGram is CBoW reversed -> takes middle word at k, and attempts to predict surrounding 2k words.
+
+Now x_i = middle word, y_i = surrounding words
+
+1) Take e -> R^|V|
+2) Dimensionality Reduction: Fully-Connected Layer producing u=We, where W is R^{Dx|V|} transformation matrix, D<<|V|
+3) Final Layer: Trainable Linear Layer Producing -> v_i = R_i*u (2k outputs)
+4) Softmax Layer: Probabilities which word should be predicted at index i
+
+Choosing Linear/Embedding Layers route has little to no importance, order of output doesn't matter
+
+L = -log(...)... - recommended loss function
+
+Word2Vec -> SkipGram / CBoW
+
+GloVe -> Global Vector for Word Representation
+
+Pre-trained if:
+  General Language, Smaller Dataset
+
+Train-Your-Own if:
+  Niche/Specialized Language (Computationally Expensive)
+
