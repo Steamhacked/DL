@@ -1,0 +1,17 @@
+The question is still Open, as it is unclear which metric to use
+
+Extrinsic -> based on ability of word embeddings to be used as the feature vectors of supervised ML algorithms. The better it performs on a complex task,
+the better it (probably) is. Evaluate by reusing in another NLP benchmark task (using transfer learning)
+
+Intrinsic -> compare to human judgment, a human expert will judge if the embedding is good.
+
+Cosine -> Attempted "Objective" Metric measuring similarity of 2 words, by computing cosine between 2 embedding vectors, 0 -> orthogonal -> uncorrelated,
+->+-1 -> likely synonyms
+
+Rules:
+1) "Good" embedding captures/models semantic proximity (Problem -> Subjective)
+2) Preserve word analogies (Subjective too) e.g.: w_king - w_queen = w_man - w_woman
+3) Operate with word variations (plural, conjugations, declensions, typos, etc.) (Subjective Again)
+
+Biasness: Embedding will be biased if the original corpus of text is biased
+
