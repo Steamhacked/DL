@@ -1,0 +1,12 @@
+Q -> W_q*x -> Information in another word that will make sense
+K -> W_k*x -> Information provided by the word
+V -> W_v*x -> What exactly should be transferred when found
+
+
+
+x_i -> initial word embedding
+q_i -> representation of what information will be useful for x_i
+k_j -> representation of what information is provided by x_j
+
+if q & k match -> greater value = greater correlation/interdependence, if not -> disregard (meaningless connection)
+
