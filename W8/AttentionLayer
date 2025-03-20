@@ -1,0 +1,44 @@
+CBoW -> averages words, which may cancel some words out when sentence is large
+LSTM -> memory span -> limited, which results into lost context (by the time you read word #70, you will forget word #1)
+
+How to make model grasp the importance of the word and connect words in sequence even if they are far apart?
+
+Attention attempts to replicate cognitive attention, highlighting important inputs and fading away the rest. More resources devoted to small but significant,
+data
+
+Identify important input words x_i with respect to outputs y_i
+
+Transformer Networks -> Utilize Attention (Layers), to have more prominent expressive powers
+
+1) Start with embedding vector used to propagate content between words of an input sequence. Use 1st embedding vector for any word w_k, by using different
+embedding model, or implementing similar architecture 
+
+2) Positional Encoding -> can be added to preserve order characteristics?
+
+3) Attention Layer: before -> embedding for word i is v_i; after -> new embedding v_i' = sigma_j(a_i,j * v_j); where a_i,j is a matrix of values in range
+[0; 1], that assign significance of the given word
+
+Multi-Head (Self-Attention) Layer -> Vectors V, K, Q; Q-> query, K -> keys, V -> values; (Preserves interdependence)
+  "Paris is the capital city of France"
+  E.G.: Current word q_i = city, any other word e.g. k_j = Paris, get similarity score for all pairs (dot/cos): S=QK^T
+
+  S_2 = softmax(S) -> distribution of the similarities, (in general also normalize S=(QK^T)/d as in cosine angle
+  S_2 -> matrix a
+  set v'=a*v (element-wise?)
+
+4) Masking -> used in decoder
+5) Feedforward -> set of FC & Linear layers for smoother transitions and reshape so it is encoder/decoder-readable (use skip/residual)
+
+Outputs are used as targets and inputed into decoder part of the transformer (we try to evaluate embedding, so we can use outputs)
+
+6) Same Multi-Heading layer, but with masking, outputs are partially masked, so that current or future outputs cannot be used to predict
+
+7) 2nd Self-Attention Layer uses V & K from encoder and Q from decoder; A = softmax((QK^T)/d)*V
+
+8) Attention block repeated few times (Multi-Head Attention + Add/Norm + Feed Forward)
+
+Finish with FC & Softmax
+
+Train with pairs of sentences (x,y), e.g.: sentence->translation
+
+
