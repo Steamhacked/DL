@@ -1,0 +1,5 @@
+Tokenizer -> Preprocessor of Sentences:
+  Breaks down words into smaller units (tokens)
+  Add special separator tokens (end of sentence, separate sentences, convert special symbols)
+  Converts Tokens to numerical Ids based on the model's dictionary
+
