@@ -1,0 +1,62 @@
+Why?
+  Self-Attention allows to find interdependence between datapoints no matter how distant -> No Locality Bias
+  -> Enables global dependency modelling
+  Improved Scalability (Works better as data size increases)
+  Similar or better performance wise 
+  Flexible, can be expanded to video, 3d and multi-modal
+
+
+ViT:
+  1) Split images into patches, each patch treated as token
+  2) Positional encoding (retain position information)
+  3) Global dependencies modeled with transformers & attention layers
+
+1) Split patches, transform into linear embeddings using Conv2D on each patch, then flatten into 1D vectors
+2) Positional Encoding (good encoding?: "orthogonal" encodings for patches, provides absolute and relative positional information, closer positions have smaller encoding difference
+
+Sinusoidal Encoding:  
+  phi(i, k) = sin(i/10000^(k/D)), if k is even; cos(i/10000^(k/D)) if k is odd
+  i -> index of patch (16 patches -> 0;15)
+  D -> encoding vector size (e.g.:64)
+  k -> [0;D] -> [0;63]
+
+psi(i,k) = theta(i,k) + phi(i,k)
+
+theta -> k-th element of embedding vector produced for patch i
+phi -> k-th element of positional encoding vector
+psi -> k-th element of vector combining the two
+
+Image, however is 2D, which earlier formula does not take into account, therefore -> split:
+Patch i is identified by row and column indices (x, y)
+Two separate positional encodings phi created, x for row index (x-axis), y for column index (y-axis)
+
+2D psi(i,k) = theta(i,k) + phi_x(k) + phi_y(k)
+
+3) Create model:
+  Receives patches' encodings and 2D sinusoidal positional encodings
+  Implements simple attention layers
+  Finish with a linear layer
+  GELU, dropout, etc.
+
+Training Loop:
+  ViTs need a lot more iterations than CNNs
+  ViTs need relevant patches of information -> Trains better on higher resolution images
+  Use best practices
+
+Swin -> Shifted Window Transformer -> Advanced ViT addressing scalability and efficiency challenges, when applied to larger images and high-resolution images:
+  Hierarchical Repressentations: 
+    ViT -> Fixed-size grid of patches; Swin -> Buids hierarchical feature pyramid similar to CNN
+    Starts with small patches and progressively merges them to form larger receptive fields (detects objects of different sizes in the same image)
+
+  Local Self-Attention Windows:
+    Processes patches within local windows instead of computing for all patches
+    Computational complexity reduced from O(N^2) to O(N)
+
+  Shifted Window Mechanism:
+    Windows are shifted between successive layers, to overcome limitations of local windows
+    Allows cross-window interactions to capture long-distance dependencies
+    Allows to "propagate" information across windows over successive layers
+
+
+
+Hybrid ViT models attempt to combine CNN and ViT: e.g. use CNN on front-end for feature extraction and pass CNN-extracted features to the transformer
