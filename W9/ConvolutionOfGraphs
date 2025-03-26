@@ -1,0 +1,25 @@
+Graphs, just like images have spatial interdependence, a node on it's own has little to no meaning without information on surrounding node;
+Just like images graphs have spatial homophily, closer nodes tend to be similar in terms of features and labels
+
+Graph Convolution Formulas
+1) H' = AH; A-> adjacency matrix of the graph, H-> nodes features matrix of the graph:
+  Each node x_i is the sum of its neighboring nodes h_i
+2) H' = A^hat * H; A^hat = A+I; 
+  Each node x_i is the sum of x_i and its neighboring nodes
+
+Normalizing Factor:
+  D^hat = D+I, Diagonal Matrix of degrees of the nodes, augmented by one
+
+Normalizing Graph Convolution Matrix:
+  N^hat = D^hat^-1 * A^hat
+
+Normalized Graph Convolution:
+  H' = N^hat * H
+
+Add weigh Matrix W -> Propagation Rule -> H' = sigma(N^hatHW), sigma -> activation function;
+
+Kipf Spectral Propagation Rule:
+  H' = sigma(N^hat^kipf HW) = sigma(D^hat^(-1/2) * A^hat * D^hat^(-1/2)*HW)
+  Slightly better than D^hat^-1, especially for oriented graphs (symmetric Laplacian of the graph)
+
+Kipf layer normalizes by taking into account degree of neighboring nodes, allowing for more information
