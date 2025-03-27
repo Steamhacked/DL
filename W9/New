@@ -1,0 +1,22 @@
+Objective -> learn latent representation/embedding of the adjacency matrix of the graph. Matrix Nxd, N-> number of nodes, d<<N
+
+DeepWalk -> 
+  Start from a node and start walking randomly in the graph
+  Next node is decided using uniform random
+  For each node in graph generate gamma random walks with t transitions; Gamma -> number of exploration move, t -> how deep each exploration gets
+  #37
+  Resulting list of Ngamma sequences
+
+  Apply skipgram on all the sequences: predict surrounding nodes visited during random walks, using starting node, extract embedding layer for the node later
+
+Node2Vec -> 
+  Same as deepwalk, but the next node is not chosen randomly
+  Gamma -> number of random walks from each node, t -> length of the walk, 1/p -> probability to return to the previously visited node, 1/q -> probability
+to visit an unvisited node, encourage exploration: 1/p < 1/q; p & q -> adjusted dynamically based on the visited graph
+
+
+GraphSAGE -> 
+  Learn to propagate nodes information/features h_i across the graph to compute new node features h_i'
+  Implemented as SAGE inductive layer in the NN
+  Propagation rule -> refer to the Lecture Slides
+
