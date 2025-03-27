@@ -1,0 +1,16 @@
+Nodes lack useful features, therefore feature engineering is necessary
+
+Possibly useful features to use in training:
+
+>Hop-distance to node 0 and node 33, the distance can be calculated using BFS (Proximity to either of the 2 guys)
+
+>Number of nodes neighboring to 0 & 33 (hop-distance 1) [Friends of either of the 2 guys]
+
+>Edge weights 
+
+Problem with previous (base) model:
+  1) Use of adjacency matrices is computationally demanding and inefficient, due to large and sparse graphs (spectral embedding)
+  2) Modifying graph will require reshaping the entire embedding architechture (spectral embedding works on fixed graphs) [also fails if node names swapped]
+  3) Lack of node/edge features (requires feature engineering)
+  4) Requires attention, in identifying more important nodes
+
