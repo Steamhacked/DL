@@ -1,0 +1,8 @@
+Steps to GAN:
+  1) Linear transformation of all features h_i of each node x_i, by multiplying with weight matrix W (R^(F'xF)) F-> number of nodes features in h_i, 
+F'-> number of features expected at the end of the embedding
+  2) Using shared attentional mechanism: e_i,j = a(Wh_i, Wh_j); replace a with feedforward network, with a = R^2F' (matrix) and LeakyReLU activation
+  3) Normalize coefficients a_i,j with softmax
+  4) Propagation rule: h_i' = sigma(SIGMA_j nbrs(i) {a_i,j * Wh_j}) 
+  5) Optional: Use K>1 heads for attention mechanism (aggregation mechanism)
+
