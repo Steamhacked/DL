@@ -37,3 +37,4 @@ Loss L_G on Generator
 4) Loss on Discriminator -> To make discriminator guess correctly, first term checks correctness of classification for real images, second term for fakes (see formula in slides)
 5) Loss on Generator -> To make discriminator produce fakes good enough to fool the Discriminator, check if discriminator classifies fakes as reals
 
+Interleaved Training -> Generator and Discriminator are trained one by one and not simultaneously, does not guarantee convergence
