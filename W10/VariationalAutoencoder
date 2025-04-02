@@ -1,0 +1,39 @@
+Vanilla Autoencoder -> takes single fixed input and output a fixed single value for each encoding dimension
+
+Variational Autoencoder -> provides probabilistic manner for describing an observation in latent space (distribution) 
+
+VAE attempts to do the same job except: how to represent inputs into and reconstruct outputs from a probabilistic latent space/representation
+
+VAE -> smoother since the output is distribution, decoder will work harder to reconstruct images as the latent vector can be different for 2 forward passes, space for latent vectors will be used more
+uniformly
+
+Same Structure: Encoder, bottleneck, Decoder, Reconstruction Loss
+
+Bottleneck in VAE -> each value of the feature vector is assumed to follow normal distribution, with its mean and standard deviation, sample from distributions before decoding
+
+Kullback Leibler Divergence -> measure of difference between 2 probability distributions (not commutative); D_KL(p||q) = sigma_x(p(x)log(p(x)/q(x))
+
+Jensen-Shannon Divergence -> another measure, averages KL divergences (better, because commutative)
+
+Reconstruction Loss -> 1 term penalizes reconstruction error, another term encourages learned distribution to be similar to target distribution:
+MSE(x,x_^) + alpha * sigma_j[ D_KL(q_j(z|x) || N(0,1))]
+
+VAE to GANs:
+
+Train encoder-decoder architecture to learn good embeddings, remove decoder and reuse encoder for embeddings, keep decoder instead?
+
+Generator -> takes noise and produces meaningful output
+
+GAN -> attempts to reproduce the samples distribution in a given dataset:
+Noise sample generator Z
+Generator G
+Discriminator D
+Loss L_D on Discriminator
+Loss L_G on Generator
+
+1) Noise Sample Generator Z -> simply generate random vector by random noise
+2) Generator -> Receives noise vector and produces "fake" image
+3) Discriminator -> Receives image from dataset or fake image from generator (50/50), then attempts to classify as fake/gay
+4) Loss on Discriminator -> To make discriminator guess correctly, first term checks correctness of classification for real images, second term for fakes (see formula in slides)
+5) Loss on Generator -> To make discriminator produce fakes good enough to fool the Discriminator, check if discriminator classifies fakes as reals
+
