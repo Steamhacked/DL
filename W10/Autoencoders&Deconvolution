@@ -1,0 +1,11 @@
+Autoencoder -> learns to copy its input to its output, attempting to approximate the identity function, has hidden layer that describes code used to represent the input (latent/feature representation)
+
+Consists of encoder & decoder, encoder -> maps input into code; decoder -> maps code into output
+
+Autoencoder -> restricted in latent representation dimensionality, forces autoencoders to reconstruct the input approximately, preserving only the most relevant parts of data
+
+Reconstruction Loss -> measures how well the decoder is performing and how close the output is to the original input
+
+Deconvolution (Transposed/Fractionally strided convolution) -> layer used to upsample the input feature map to a desired output feature map using some learnable parameters. Works just like convolution,
+except the result of multiplication by kernel is copied in multiple cells to upsample. Trainable, implemented in COnvTranspose
+
