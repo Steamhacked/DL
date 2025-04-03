@@ -1,0 +1,93 @@
+Vanilla GAN:
+  1) Noise Generator
+  2) Generator
+  3) Discriminator
+  4,5) Loss on Generator & Discriminator
+
+Issues:
+  1) Convergence not guaranteed for interleaved training
+  2) Even if convergence is reached, it is not necessarily the best possible outcome (Nash Equilibrium) 
+  3) Mode Collapse -> the generator may find an easy way to fool the discriminator by continuously producing the same image with small variations, which results in loss of generality
+  4) Oversensitive to hyperparameters 
+  5) Imbalance between generator and discriminator
+
+Wasserstein Distribution -> like JS and KL, measures difference between 2 distributions, minimum transport needed to transform p into q (if p & q are discrete)
+
+Wasserstein GAN -> use critic neural network instead of discriminator, which coincidentally a NN that models K-Lipschitz function,
+Critic f -> judges the sample if it's a good/bad fake on a spectrum (no longer classification)
+Loss functions -> easy to compute, means of critic decisions over real/fake samples
+
+Process:
+  Generate mini-batches of random noise, which will be fed to generator later
+  Draw samples from dataset, which will be fed to critic later
+  Flatten Images (FC)
+
+  Train Critic:
+    Pass real samples to f, get critic scores
+    Compute 1st half of the loss for f, on the real samples 
+    Pass noise samples to generator and its outputs to critic, get critic scores
+    Compute 2nd half of the loss for f, on the fake samples 
+    Calculate gradient penalty and add to loss (Gradient should be bounded by 1, -> condition for Kantorovich-Rubinstein duality)
+    Backpropagate f on the computed loss
+
+  Train Generator:
+    Produce fresh batch of of noise samples
+    Produce fakes by feeding noise samples to the generator
+    Pass fakes to critic, get critic scores for the samples
+    Backpropagate G on the computed loss
+
+Limitations:
+  Limited to low-resolution images, producing high quality images - challenging, generator must learn to produce both large structure and details
+  Limited control over generator outputs, lack of understanding of noise's effect on generator outputs
+
+Progressive GAN: Increase sizes progressively during training, new blocks of convolutional layers systemically added to generator and discriminator
+
+Implementation: 
+G:
+
+Add blocks of layers and perform phasing in addition to the blocks
+Use skipconnections to connect new blocks to output layer and add to existing output layer with weighting
+Contribution of upsampled 16x16 layer is weighted by 16-alpha, contribution of newly added layer 32x32 is weighted by alpha
+Resolution doubles at each step
+Alpha progressively increases from 0 to 1
+All layers remain trainable
+
+D:
+Add blocks of layers and perform phasing in addition to the blocks
+Use skipconnections to connect new blocks to input layer and add to existing input layer with weighting
+Donwsampling with average pooling
+Contribution of downsampled 16x16 layer is weighted by 16-alpha, contribution of newly added layer 32x32 (also downsampled) is weighted by alpha
+Resolution doubles at each step
+Alpha progressively increases from 0 to 1
+All layers remain trainable
+
+Condiitonal GAN: add some deterministic values to noise samples used in generator, corresponds to the expected class of the sample
+StyleGAN: PGGAN, but change architecture of Generator
+
+New Input: Mapping Network, Noise introduced at each layer of generator
+
+Mapping Network -> outputs style vector defining the style, which allows for control over the style of generated image
+Per-block incorporation of noise and style-vector, allows to localize both interpretation of style and induce random variation to a given level of detail
+
+Mapping Network -> standalone NN of dense layers, taking noise as input and producing style vector
+
+AdaIN -> Adaptive Instance Normalization -> standardize output of the feature map to standard gaussian, similar to batchnorm
+AdaIN(x,y) = sigma(y) * ([x-mu(x)]/sigma[x]) + mu(y), x -> content input, y -> style input
+
+AdaIN -> not trainable
+
+Aligns channel-wise means and variances of x to match with those of y
+
+Local Noise is addded in every Convolutional layer before AdaIN layers, single-channel images consisting of uncorrelated gaussian noise are added, fed to each layer, broadcasted to all features map,
+using learnt per-feature scaling factors and added to the output of each convolution, introduces style-level noise at a given level of detail
+
+StyleGAN -> effective in both high-quality production and controlling
+
+CycleGAN -> do not use noise, use other image you want to transform instead, train autoencoder-based architecture having 2 generators, G_1 transforms horses to zebras, G_2 transforms zebras to horses
+
+Train both generators to accomplish G_1(G_2(x)) = x -> get generators that transform images of one type into another
+
+
+
+
+  
