@@ -1,0 +1,24 @@
+Reinforcement Learning (RL) -> trial-&-error training, (paradigm of ML) [as opposed to DL - learn by example]
+
+There is no dataset, only a feedback on the action taken, e.g.: Go, there is no dataset (boardstate -> optimal move) [We have poor understanding of mapping Go boardstates to optimal move]
+
+Agent tries action in given states and receives feedback, learns on the fly trying combinations of states, feedback and actions
+
+RL Problem:
+
+1) AI is given a problem at time t, in a current state s(t)
+2) AI takes an action to answer the problem in this given state a(t)
+3) The action has a positive/negative effect, measured by AI in terms of feed back, R(t, a(t), s(t))
+
+State -> Action -> Reward -> Change in Environment (New State) -> Repeat 
+
+Policy -> function that returns action among set of possible actions, to be taken in a given state, a_t = pi_t(s_t) 
+
+Objective of RL -> find most optimal policy function
+
+Reward and Return -> loss function given to AI, R_t(a_t, s_t)
+
+Maximize expected future reward: G_t = R_t+1 + R_t+2...
+
+Reward Hypothesis -> Any goal can be formalized as the outcome of maximizing a cumulative reward function G (gain)
+
