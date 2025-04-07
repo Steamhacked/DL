@@ -1,0 +1,19 @@
+Multi-Armed Bandit problem -> problem of allocating limited set of resources between various choices such that gain is maximized, each choice properties are only partially understanded and can be explored,
+as time passes or resources are used
+
+How to decide on Epsilon value? Too large -> overexploring and higher regret, Too small -> underexploring, possibly missing important knowledge; HyperParameter
+
+Exploration length is better to be decided on the go (early stop is necessary), preferably smoothly transition from exploration to exploitation phase
+
+Epsilon-Greedy Strategy: epsilon decreases over time, starts with 1, ends with 0
+phi(t) = exploration with probability = epsion, exploitation with probability = 1-epsilon
+
+Exploration -> choose action among all the random machines, with softmax distribution
+Exploitation -> choose action with current best performing machine
+
+Upper Bound Strategy: instead of using expectation, choose machine with the highest upper bound for confidence interval of the statistical evaluation for machine:
+
+a_t = argmax[phi(t) = e(t) + c * sqrt(log(t)/N_t(i))
+
+What if machines have dynamic probabilities? -> Learn dynamic according to which the probabilities change (on top of everything else)
+
