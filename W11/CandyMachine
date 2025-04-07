@@ -1,0 +1,40 @@
+Candy machine:
+Deterministic Machine: takes coin, drops 1 candy, always
+Random Machine: takes coin, drops either none or 2 candies, at probabilities 1-p and p
+
+Problem: 5 machines, #1 is deterministic, the rest is random, probabilities unknown, given 10000 coins, maximize number of candies
+
+t -> coin [1;10000]
+A -> action [1;5]
+state -> estimated expectations for each machine, {e1,e2,e3,e4,e5}
+
+Exploration & Exploitation -> Exploration - phase of trying actions, Exploitation - utilizing observed most optimal action; 
+
+Good RL-based AI should be able to optimally combine exploration & exploitation
+
+EE tradeoff
+
+Strategy 1, always use Deterministic Machine: (defines lower bound, it cannot be worse) [Too little, or none exploitation]
+policy: pi(a|s) = 1 if (s=1), 0 otherwise
+Strategy 2, naive random, randomly decide which machine to use (0.2 each): [To little, or none, exploration]
+policy: pi(a|s) = 1/5 
+Strategy 3, perfect knowledge, use machine that is known to have the best yield (cheating, requires prior knowledge) [theoretical upper bound, there is no strategy better]
+policy: pi(a|s) = 1 if a = argmax(1, 2p_2...2p_5), 0 otherwise
+
+Epsilon-1st:
+Explore using epsilon proportion (0;1) of coins among machines distributed randomly (uniform)
+Exploit using remaining coins with most optimal machine observed
+
+pi(a|s) = 1/5 if t < 10000epsilon; 1 if t>10000epsilon and a = argmax(e(t)); 0 otherwise
+
+Problem: during exploration coins are reused even after poor results are shown by some machines, there is a need to drop least optimal machines
+
+Epsilon-1st-SoftMax:
+Explore using epsilon proportion (0;1) of coins among machines distributed using softmax distribution
+Exploit using remaining coins with most optimal machine observed
+if the machine was never used before, set e_i(t) = 1
+
+Softmax allows to delegate more coins to more promising machines
+
+Regret = coins used during exploration, typically Regret = Upper Bound strategy - Given strategy, needs to be minimized, cannot be 0, "Cost of Knowledge"
+
