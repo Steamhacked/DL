@@ -1,0 +1,23 @@
+Given maze, no known information on maze's structure beforehand, objective: find the shortest path from start to end
+
+State: starts at s_1 = (0,0)
+Action Space: move{up,down,left,right}
+Update Rules: if the action would move character into the wall, state s_t+1 = s_t, otherwise update coordinates accordingly
+
+Every state * action will have a reward of -0.05, -0.75 for bumping into the wall, -0.25 for revisiting already visited spaces -> compelling the agent to find the shortest path possible
+
+Gain is therefore maximized when the shortest path is used
+
+Value Function -> predicts future rewards based on the current state: v_t^pi(s_t) = E_pi[R_t+gammaR_t+1_gamma^2*R_t+2...], gamma -> hyperparameter to make future values more/less important
+
+optimal action is therefore the one that maximizes sum of immediate reward R_t and future rewards expected v_t+1 (state-action function)
+
+State-Action Function Q -> quantifies optimality of given action, under give policy: Q_t(a_t,s_t) = R_t + V_t+1
+
+Policy can be derived: a_t = pi_t(s_t) = max(Q_t(a, s_t)) (Bellman's equations)
+
+Q-table -> representation of the Q-function
+Q-learning -> updating Q-table (RL counterpart of gradient descent): Q_new = Q_old + alpha * (R_t + gamma * maxQ(s_t+1,a) - Q(s_t,a_t)
+gamma * maxQ(s_t+1,a) -> estimate discounted best possible future reward
+
+Then define policy that transitions from exploration to exploitation, when convergence on Q-table is observed
